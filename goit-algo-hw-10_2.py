@@ -17,7 +17,7 @@ num_samples = 10000
 
 # Генерування випадкових точок
 x_samples = np.random.uniform(a, b, num_samples)
-y_samples = np.random.uniform(0, rectangle_area, num_samples)
+y_samples = np.random.uniform(0, max(f(np.linspace(a, b, 1000))), num_samples)
 
 # Підрахунок кількості точок, що потрапили під криву
 points_under_curve = sum(f(x_samples) > y_samples)
@@ -29,8 +29,6 @@ ratio = points_under_curve / num_samples
 integral_value = rectangle_area * ratio
 
 print("Значення інтеграла методом Монте-Карло:", integral_value)
-
-
 
 # Обчислення інтеграла
 result, error = spi.quad(f, a, b)
